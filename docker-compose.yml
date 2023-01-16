@@ -1,0 +1,14 @@
+version : "3"
+
+services:
+  lb:
+    image: haproxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+  app:
+    image: doduykhang/hermes-chat
+    ports:
+      - "8080:8080"
+
