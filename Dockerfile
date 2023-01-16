@@ -14,5 +14,5 @@ EXPOSE 8080
 
 ENV LISTEN_PORT=""
 
-ENTRYPOINT [ "build/build/app" ]
+ENTRYPOINT [ "/build/build/app" ]
 
