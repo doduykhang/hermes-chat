@@ -5,16 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/doduykhang/hermes/chat/pkg/dto"
 	"github.com/go-redis/redis/v8"
 )
 
-type IncomingMessage struct {
-	RoomId string `json:"roomId"`
-	Message string `json:"message"`
-}
-
 type Sub interface {
-	Subscribe(out chan IncomingMessage) 
+	Subscribe(out chan dto.IncomingMessage) 
 }
 
 type redisSub struct {
@@ -27,7 +23,7 @@ func NewSub (redis *redis.Client) Sub {
 	}
 }
 
-func (s *redisSub) Subscribe(out chan IncomingMessage) {
+func (s *redisSub) Subscribe(out chan dto.IncomingMessage) {
 	subscriber := s.redis.Subscribe(context.TODO(), "messages")		
 
 	for {
@@ -36,7 +32,7 @@ func (s *redisSub) Subscribe(out chan IncomingMessage) {
 			fmt.Println(err)
         	}
 
-		var incomingMessage IncomingMessage
+		var incomingMessage dto.IncomingMessage
 		err = json.Unmarshal([]byte(msg.Payload), &incomingMessage)
 		
         	if err != nil {

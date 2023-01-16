@@ -5,15 +5,12 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/doduykhang/hermes/chat/pkg/dto"
 	"github.com/olahol/melody"
 )
 
-type Message struct {
-	Message string `json:"message"`
-}
-
 type WebSocket interface {
-	BroadcastToRoom(roomId string, message Message) (error)
+	BroadcastToRoom(roomId string, message dto.Message) (error)
 	Handle(w http.ResponseWriter, r *http.Request) (error)
 }
 
@@ -27,7 +24,7 @@ func NewWebSocket (melody *melody.Melody) WebSocket {
 	}	
 }
 
-func (ws *webSocket) BroadcastToRoom(roomId string, message Message) (error) {
+func (ws *webSocket) BroadcastToRoom(roomId string, message dto.Message) (error) {
 	messageByte, err := json.Marshal(&message)
 	if err != nil {
 		return err

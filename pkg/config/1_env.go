@@ -6,6 +6,13 @@ import (
 	"os"
 )
 
+var (
+	envFile = map[string]string {
+		"DEV": "./env/dev.json",
+		"PROD": "./env/prod.json",
+	}
+)
+
 type Redis struct {
 	Host string `json:"HOST"`	
 	Port string `json:"PORT"`	
@@ -23,7 +30,11 @@ var (
 )
 
 func init() {
-	bytes, err := os.ReadFile("./env/rc.json")
+	envFilePath := envFile["DEV"]
+	if file := envFile[os.Getenv("ENV")]; file != ""  {
+		envFilePath = file
+	}
+	bytes, err := os.ReadFile(envFilePath)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -3,6 +3,7 @@ package handler
 import (
 	"net/http"
 
+	"github.com/doduykhang/hermes/chat/pkg/dto"
 	"github.com/doduykhang/hermes/chat/pkg/service"
 )
 
@@ -17,10 +18,10 @@ func (c *Chat) HandleConnect(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *Chat) HandleMessage() {
-	messages := make(chan service.IncomingMessage)
+	messages := make(chan dto.IncomingMessage)
 	go c.sub.Subscribe(messages)	
 	for message := range messages {
-		c.socket.BroadcastToRoom(message.RoomId, service.Message{ Message: message.Message })
+		c.socket.BroadcastToRoom(message.RoomId, message.Message)
 	}
 }
 

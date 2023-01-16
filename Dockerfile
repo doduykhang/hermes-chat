@@ -11,5 +11,7 @@ RUN make build
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/build/build/app" ]
+ENV LISTEN_PORT=""
+
+ENTRYPOINT ENV=PROD /build/build/app
 
