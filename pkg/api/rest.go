@@ -35,5 +35,6 @@ func Serve() {
 	//routes
 	route.ChatRoute(r, chatHandler)
 
+	log.Println("listen on", port)
 	log.Fatal(http.ListenAndServe(port, r))
 }
