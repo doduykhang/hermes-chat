@@ -4,7 +4,7 @@ services:
   lb:
     image: haproxy
     ports:
-      - "80:80"
+      - "443:80"
     volumes:
       - ./haproxy:/usr/local/etc/haproxy
   app:
