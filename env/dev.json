@@ -1,9 +1,9 @@
 {
 	"PORT": ":8080",
 	"REDIS": {
-		"HOST": "redis-11832.c295.ap-southeast-1-1.ec2.cloud.redislabs.com",
-		"PORT": "11832",
-		"USERNAME": "default",
-		"PASSWORD": "WzEq3uPzGX3MzpccWm4U8nQmXkhpoDWH"
+		"HOST": "localhost",
+		"PORT": "6379",
+		"USERNAME": "",
+		"PASSWORD": ""
 	}
 }	
