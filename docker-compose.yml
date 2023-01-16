@@ -8,7 +8,7 @@ services:
     volumes:
       - ./haproxy:/usr/local/etc/haproxy
   app:
-    image: doduykhang/hermes-chat
+    image: hermes-chat
     ports:
       - "8080:8080"
 
