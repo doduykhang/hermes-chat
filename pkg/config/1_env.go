@@ -6,12 +6,6 @@ import (
 	"os"
 )
 
-var (
-	envFile = map[string]string {
-		"DEV": "./env/dev.json",
-		"PROD": "./env/prod.json",
-	}
-)
 
 type Redis struct {
 	Host string `json:"HOST"`	
@@ -30,10 +24,7 @@ var (
 )
 
 func init() {
-	envFilePath := envFile["DEV"]
-	if file := envFile[os.Getenv("ENV")]; file != ""  {
-		envFilePath = file
-	}
+	envFilePath := "./env/env.json"
 	bytes, err := os.ReadFile(envFilePath)
 	if err != nil {
 		log.Fatal(err)

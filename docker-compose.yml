@@ -9,6 +9,6 @@ services:
       - ./haproxy:/usr/local/etc/haproxy
   app:
     image: hermes-chat
-    ports:
-      - "8080:8080"
+    volumes:
+      - ./env/prod.json:/build/env/dev.json
 
