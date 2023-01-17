@@ -10,7 +10,7 @@ services:
   app:
     image: hermes-chat
     volumes:
-      - ./env/prod.json:/build/env/dev.json
+      - ./env/prod.json:/build/env/env.json
     environment:
       - SERVER="2"
 
