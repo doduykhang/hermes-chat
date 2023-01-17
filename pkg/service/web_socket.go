@@ -3,7 +3,9 @@ package service
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/doduykhang/hermes/chat/pkg/dto"
 	"github.com/olahol/melody"
@@ -25,6 +27,7 @@ func NewWebSocket (melody *melody.Melody) WebSocket {
 }
 
 func (ws *webSocket) BroadcastToRoom(roomId string, message dto.Message) (error) {
+	log.Println("broadcasting from", os.Getenv("SERVER"))			
 	messageByte, err := json.Marshal(&message)
 	if err != nil {
 		return err

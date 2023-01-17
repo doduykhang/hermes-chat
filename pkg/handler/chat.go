@@ -1,7 +1,9 @@
 package handler
 
 import (
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/doduykhang/hermes/chat/pkg/dto"
 	"github.com/doduykhang/hermes/chat/pkg/service"
@@ -14,6 +16,7 @@ type Chat struct {
 
 
 func (c *Chat) HandleConnect(w http.ResponseWriter, r *http.Request) {
+	log.Println("connecting to", os.Getenv("SERVER"))			
 	c.socket.Handle(w, r)
 }
 
