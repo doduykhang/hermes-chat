@@ -16,6 +16,7 @@ type Redis struct {
 
 type Env struct{
 	Port string `json:"PORT"`
+	JwtSecrect string `json:"JWT_SCERECT"`
 	Redis Redis `json:"REDIS"`
 }
 

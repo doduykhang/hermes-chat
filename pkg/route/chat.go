@@ -9,7 +9,7 @@ import (
 
 func ChatRoute(r chi.Router, h *handler.Chat) {
 	go h.HandleMessage()
-	r.Get("/ws/{roomId}", h.HandleConnect)
+	r.With(authMiddleware.Authenticate).Get("/ws/{roomId}", h.HandleConnect)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("hello world"))
 	})

@@ -4,7 +4,7 @@ services:
   lb:
     image: haproxy
     ports:
-      - "80:80"
+      - "81:80"
     volumes:
       - ./haproxy:/usr/local/etc/haproxy
   app:
@@ -12,5 +12,5 @@ services:
     volumes:
       - ./env/prod.json:/build/env/env.json
     environment:
-      - SERVER="2"
+      - SERVER="1"
 
